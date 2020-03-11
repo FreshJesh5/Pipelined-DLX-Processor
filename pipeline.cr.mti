@@ -1,0 +1,122 @@
+/home/hcd3707/EECS362/pipeline2/shifter.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/shifter.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module shifter
+
+Top level modules:
+	shifter
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/tb.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/tb.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module tb
+
+Top level modules:
+	tb
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/control.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/control.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module control
+
+Top level modules:
+	control
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/IFID_reg.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/IFID_reg.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module IFID_reg
+
+Top level modules:
+	IFID_reg
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/muxFile.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/muxFile.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module mux8_1
+
+Top level modules:
+	mux8_1
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/forwarding.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/forwarding.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module forwarding
+
+Top level modules:
+	forwarding
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/CLU.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/CLU.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module CLU
+-- Compiling module CLA_4bit
+
+Top level modules:
+	CLU
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/register.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/register.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module register
+
+Top level modules:
+	register
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/signExtender.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/signExtender.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module signExtender
+
+Top level modules:
+	signExtender
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/GPR.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/GPR.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module GPR
+-- Compiling module Register
+-- Compiling module DFlipFlop
+-- Compiling module mux32_1
+-- Compiling module mux4_1
+-- Compiling module mux2_1
+-- Compiling module Decoder5_32
+-- Compiling module Decoder3_8
+-- Compiling module Decoder2_4
+
+Top level modules:
+	GPR
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/hazard_detect.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/hazard_detect.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module hazard_detect
+
+Top level modules:
+	hazard_detect
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/SRAM.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/SRAM.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module SRAM
+
+Top level modules:
+	SRAM
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/SignExtend_SRAM.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/SignExtend_SRAM.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module SignExtend_SRAM
+
+Top level modules:
+	SignExtend_SRAM
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/ALU_rtl.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/ALU_rtl.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module ALU_rtl
+
+Top level modules:
+	ALU_rtl
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/ALUcontrol.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/ALUcontrol.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module ALUcontrol
+
+Top level modules:
+	ALUcontrol
+
+} {} {}} /home/hcd3707/EECS362/pipeline2/pc.v {1 {vlog -work work -vopt -nocovercells /home/hcd3707/EECS362/pipeline2/pc.v
+Model Technology ModelSim SE-64 vlog 6.3c Compiler 2007.09 Sep 11 2007
+-- Compiling module pc
+
+Top level modules:
+	pc
+
+} {} {}}

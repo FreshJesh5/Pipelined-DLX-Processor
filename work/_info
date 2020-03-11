@@ -1,0 +1,372 @@
+m255
+K3
+13
+cModel Technology
+d/home/hcd3707
+vALU_rtl
+V<4KPSFX`H:<DQ<Lz<H?z21
+r1
+31
+I22`2gORN9NeNLlNWJI5JE1
+Z0 d/home/hcd3707/EECS362/pipeline2
+Z1 w1510133561
+8/home/hcd3707/EECS362/pipeline2/ALU_rtl.v
+F/home/hcd3707/EECS362/pipeline2/ALU_rtl.v
+L0 4
+Z2 OL;L;6.3c;37
+Z3 o-work work -nocovercells -L mtiAvm
+n@a@l@u_rtl
+!s85 0
+vALUcontrol
+V3^PS2`;65HOh6L?26Y2YL3
+r1
+31
+Ih8]Hh6>[_FoW@j:D166<n2
+Z4 d/home/hcd3707/EECS362/pipeline2
+R1
+8/home/hcd3707/EECS362/pipeline2/ALUcontrol.v
+F/home/hcd3707/EECS362/pipeline2/ALUcontrol.v
+L0 4
+R2
+R3
+n@a@l@ucontrol
+!s85 0
+vCLA_4bit
+V7]DnO]]XPKk]>fej^V_D=1
+r1
+31
+IG`l;zhN:mIld:5Y[><BWa3
+R4
+R1
+Z5 8/home/hcd3707/EECS362/pipeline2/CLU.v
+Z6 F/home/hcd3707/EECS362/pipeline2/CLU.v
+L0 24
+R2
+R3
+n@c@l@a_4bit
+!s85 0
+vCLU
+VA[4`iojMkz[;h;WoDmXm=1
+r1
+31
+IW0IXAgI>YDk4NIafOFI580
+R4
+R1
+R5
+R6
+L0 4
+R2
+R3
+n@c@l@u
+!s85 0
+vcontrol
+Vb`0^[<cUFTCUB@_hA6C?O2
+r1
+31
+IH?k[ozL=elN5713IdRk0a2
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/control.v
+F/home/hcd3707/EECS362/pipeline2/control.v
+L0 4
+R2
+R3
+!s85 0
+vCPU
+V4>doX_lSHJbC_fN9f@RFA2
+r1
+31
+Ibb?h2Of5nX]HG;E[;hiUV1
+R4
+w1583916517
+8/home/hcd3707/EECS362/pipeline2/CPU.v
+F/home/hcd3707/EECS362/pipeline2/CPU.v
+L0 4
+R2
+R3
+n@c@p@u
+!s85 0
+vDecoder2_4
+VmKkY]8M@;gG^dgWb6AQVb2
+r1
+31
+IDgB;]6S2Q4<CMk_5CF8[73
+R4
+Z7 w1583915504
+Z8 8/home/hcd3707/EECS362/pipeline2/GPR.v
+Z9 F/home/hcd3707/EECS362/pipeline2/GPR.v
+L0 178
+R2
+R3
+n@decoder2_4
+!s85 0
+vDecoder3_8
+VOALH1GY3QYHG6Kj_RVOlR0
+r1
+31
+Ig1`;:=lGXiT;5dbF]?oSc3
+R4
+R7
+R8
+R9
+L0 160
+R2
+R3
+n@decoder3_8
+!s85 0
+vDecoder5_32
+V63T2]5M4UofXF]L[HdHOi0
+r1
+31
+I_a=Odb_6YX^MY5bUF01Y50
+R4
+R7
+R8
+R9
+L0 144
+R2
+R3
+n@decoder5_32
+!s85 0
+vDFlipFlop
+VFLZl[_Y9Sz=YdCCc=CU[f3
+r1
+31
+IW`Kec_lJCLHmTZ7M;kU5:2
+R4
+R7
+R8
+R9
+L0 72
+R2
+R3
+n@d@flip@flop
+!s85 0
+vforwarding
+VWRMl7NRT^MO^W@nQk>ZOQ2
+r1
+31
+In1Pzl4PLcnE5NDI]Qc]DT3
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/forwarding.v
+F/home/hcd3707/EECS362/pipeline2/forwarding.v
+L0 4
+R2
+R3
+!s85 0
+vGPR
+VddHAR>PmT3XEPZ`?S?K`R1
+r1
+31
+I43jQW>VRBC[;FM7OkX;7[3
+R4
+R7
+R8
+R9
+L0 4
+R2
+R3
+n@g@p@r
+!s85 0
+vhazard_detect
+VJmaEO>49[S9i`?_:^Me^B0
+r1
+31
+ITT@?B4hk3JS2j5d2E;eTQ2
+R4
+w1583914193
+8/home/hcd3707/EECS362/pipeline2/hazard_detect.v
+F/home/hcd3707/EECS362/pipeline2/hazard_detect.v
+L0 4
+R2
+R3
+!s85 0
+vIFID_reg
+VD^TCzPJzo4?FJMd3@[Y`n3
+r1
+31
+I1[`XXD?1B2F7o?M[4I]5c1
+R4
+w1583914161
+8/home/hcd3707/EECS362/pipeline2/IFID_reg.v
+F/home/hcd3707/EECS362/pipeline2/IFID_reg.v
+L0 4
+R2
+R3
+n@i@f@i@d_reg
+!s85 0
+vinstructionMemory
+VgXe>M`YjKK;X8KiT49l7>0
+r1
+31
+Igb6^zKa@Z^dc?41l_?akX1
+R4
+w1583916787
+8/home/hcd3707/EECS362/pipeline2/instructionMemory.v
+F/home/hcd3707/EECS362/pipeline2/instructionMemory.v
+L0 4
+R2
+R3
+ninstruction@memory
+!s85 0
+vmux2_1
+V6o=e7gITj3121g[jlM5571
+r1
+31
+I]dhg6IATUJ9Y[oFMM6Klf1
+R4
+R7
+R8
+R9
+L0 128
+R2
+R3
+!s85 0
+vmux32_1
+Vfj3HWVQZPFHEKn^OW]nNU0
+r1
+31
+I54cG1?j_NZk<;lf_[IjCH0
+R4
+R7
+R8
+R9
+L0 88
+R2
+R3
+!s85 0
+vmux4_1
+VU=1U4:Lh>g7U^[Z<Zn^M`1
+r1
+31
+I3Xg`@80XAjR?9=9iP4j7Z0
+R4
+R7
+R8
+R9
+L0 107
+R2
+R3
+!s85 0
+vmux8_1
+Vo<5O2zH5a^k?gkdjJ1^GH3
+r1
+!s85 0
+31
+IJ[N11IgF0ODn:B6=_z_Te1
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/muxFile.v
+F/home/hcd3707/EECS362/pipeline2/muxFile.v
+L0 2
+R2
+R3
+vpc
+V1eCeJ[ei7U[0l91`3:zhl1
+r1
+31
+IeeDdkBN^n^QLnll9o?2B=0
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/pc.v
+F/home/hcd3707/EECS362/pipeline2/pc.v
+L0 4
+R2
+R3
+!s85 0
+vregister
+V^2]GSCmX[O^]N0?Z=lChK1
+r1
+31
+InV?TcF0P`MZlMa[RVo9NL3
+R4
+w1583914061
+8/home/hcd3707/EECS362/pipeline2/register.v
+F/home/hcd3707/EECS362/pipeline2/register.v
+L0 1
+R2
+R3
+!s85 0
+vRegister
+VnBNLREU`Y_W8dnIW:UZ^i0
+r1
+31
+IUPL^M0JcecSoIn8Wd3A_51
+R4
+R7
+R8
+R9
+L0 53
+R2
+R3
+n@register
+!s85 0
+vshifter
+Vfn=]<nd?e8XXVQD7D;kZ[1
+r1
+31
+I[mW_S825;1gFM<W13QJDj3
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/shifter.v
+F/home/hcd3707/EECS362/pipeline2/shifter.v
+L0 2
+R2
+R3
+!s85 0
+vSignExtend_SRAM
+VHFZbgFa>SWS]N;TkN95BH3
+r1
+31
+IBzeSMN?B7JLGOR2eLH;UL3
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/SignExtend_SRAM.v
+F/home/hcd3707/EECS362/pipeline2/SignExtend_SRAM.v
+L0 4
+R2
+R3
+n@sign@extend_@s@r@a@m
+!s85 0
+vsignExtender
+VY<zSg]01EDRQa21E>S7Zf0
+r1
+31
+IS?e^LgYCjJfmILzBl;7CQ1
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/signExtender.v
+F/home/hcd3707/EECS362/pipeline2/signExtender.v
+L0 2
+R2
+R3
+nsign@extender
+!s85 0
+vSRAM
+V=SYM2_bn4nzo0;6cSRS]M3
+r1
+31
+Id_M:mXeoY4h[jC<i2ke:j0
+R4
+R1
+8/home/hcd3707/EECS362/pipeline2/SRAM.v
+F/home/hcd3707/EECS362/pipeline2/SRAM.v
+L0 4
+R2
+R3
+n@s@r@a@m
+!s85 0
+vtb
+VV@Xn<HnSRM[I5c1?BH]3a3
+r1
+31
+Ija>mGIXdz4hg?KOIh6B1X1
+R4
+w1583915610
+8/home/hcd3707/EECS362/pipeline2/tb.v
+F/home/hcd3707/EECS362/pipeline2/tb.v
+L0 1
+R2
+R3
+!s85 0
