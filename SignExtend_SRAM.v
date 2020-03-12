@@ -1,6 +1,3 @@
-// Sign Extender for data memory
-// Author: Jiashuo Zhang
-// Data: 6/1/2016
 module SignExtend_SRAM(sramAddress, sramData, dataExtended);
 	input [10:0] sramAddress;
 	input [15:0] sramData;

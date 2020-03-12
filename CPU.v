@@ -1,9 +1,10 @@
-// Pipelined CPU
-// Author: Jiashuo Zhang, Hongting Wang, Fanya Weng
-// Data: 6/1/2016
-module CPU(clk, rst);
+module CPU(clk, rst, sramA, sramData, sramWe, sramRe, instrA, instrD);
 	input rst;
 	input clk; // 50MHz clock.
+	input [31:0] instrD;
+	inout [31:0] sramData;
+	output sramWe, sramRe;
+	output [31:0] sramA, instrA;
 	
 	wire [31:0] instr_out, pcOut, incrPC, branchPC, extended, resultALU,wData, rData1, rData2, B, dataExtended;
 	reg  [31:0] A, B_0, pcIn;
@@ -20,12 +21,14 @@ module CPU(clk, rst);
 	wire [12:0] controlSignals;
 	wire [4:0] controlSignals_EX;
 	wire [1:0] J_JR, J_JR_EX, forward_A, forward_B;
-	wire [15:0] sramData;
+	//wire [31:0] sramData;
 	wire [2:0] opSelect;
 	wire C1,C2;
 
-	instructionMemory instMem (.address(pcOut), .instruction(instr_out));
-
+	//instructionMemory instMem (.address(pcOut), .instruction(instr_out));
+   assign instrA = pcOut;
+   assign instr_out = instrD;
+   
 	pc pCounter (.clk(clk), .rst(rst), .pcOut(pcOut), .pcIn(pcIn), .PC_write(PC_write));
 
 	// Pipeline registers
@@ -35,7 +38,7 @@ module CPU(clk, rst);
 
 	register #(146) EX_MEM (.clk(clk), .rst(rst), .in({IDEX_out[41:10], J_JR_EX, IDEX_out[155:151], controlSignals_EX, branchPC, Z, resultALU, B_0, ws1}), .out(EXMEM_out));
 	
-	register #(71) MEM_WB (.clk(clk), .rst(rst), .in({EXMEM_out[106:105] , dataExtended, EXMEM_out[68:37], EXMEM_out[4:0]}), .out(MEMWB_out));
+	register #(71) MEM_WB (.clk(clk), .rst(rst), .in({EXMEM_out[106:105] , sramData, EXMEM_out[68:37], EXMEM_out[4:0]}), .out(MEMWB_out));
 	
 	// Control Unit
 	control ctrl (.Opcode(IFID_out[31:26]), .funct(IFID_out[5:0]), 
@@ -48,11 +51,14 @@ module CPU(clk, rst);
 	
 	// Sign Extenders
 	signExtender se (IFID_out[15:0], extended);
-	SignExtend_SRAM signExt (.sramAddress(EXMEM_out[47:37]), .sramData(sramData), .dataExtended(dataExtended));
 
 	// Data memory
-	SRAM sram(.clk(clk), .address(EXMEM_out[47:37]), .data(sramData), .we(EXMEM_out[102]), .re(EXMEM_out[103]));
-
+	//SRAM sram(.clk(clk), .address(EXMEM_out[68:37]), .data(sramData), .we(EXMEM_out[102]), .re(EXMEM_out[103]));
+   //assign sramData = sramDout;
+   assign sramA = EXMEM_out[68:37];
+   assign sramWe = EXMEM_out[102];
+   assign sramRe = EXMEM_out[103];
+   
 	// Register file
 	GPR regfile (.clk(clk), .rst(rst), .rs1(IFID_out[25:21]), .rs2(IFID_out[20:16]), .ws(MEMWB_out[4:0]), .we(MEMWB_out[70]), .wData(wData), .rData1(rData1), .rData2(rData2));
 	
@@ -99,8 +105,8 @@ module CPU(clk, rst);
 	// Pick write address for Register File
 	assign wData = MEMWB_out[69] ? MEMWB_out[36:5] : MEMWB_out[68:37];
 
-	// Data bidirectional bus
-	assign sramData = EXMEM_out[102] & ~EXMEM_out[103] ? EXMEM_out[20:5] : 16'bz;
+	// Data out
+	assign sramData = EXMEM_out[102] & ~EXMEM_out[103] ? EXMEM_out[36:5] : 32'bz;
 
 	// Source B after forwarding selection
 	assign B = IDEX_out[138] ? IDEX_out[41:10] : B_0;

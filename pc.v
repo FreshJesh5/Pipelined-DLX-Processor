@@ -1,6 +1,3 @@
-// Program counter
-// Author: Jiashuo Zhang
-// Data: 6/1/2016
 module pc(clk, rst, pcOut, pcIn, PC_write);
 	output	[31:0]	pcOut;
 	input		[31:0]	pcIn;

@@ -1,6 +1,3 @@
-// Hazard detection unit
-// Author: Jiashuo Zhang
-// Data: 6/1/2016
 module hazard_detect(clk, rst, IFID_rs, IFID_rt, IDEX_rt, IDEX_MemRead, PC_write, IFID_write, mux_ctrl);
 	input [4:0] IFID_rs, IFID_rt, IDEX_rt;
 	input 		IDEX_MemRead;

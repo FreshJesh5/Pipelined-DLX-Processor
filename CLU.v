@@ -1,6 +1,3 @@
-// Carry Lookahead Unit
-// Author: Jiashuo Zhang
-// Data: 4/29/2016
 module CLU(A, B, sum, C);
 	input [31:0] A, B;
 	output [31:0] sum;

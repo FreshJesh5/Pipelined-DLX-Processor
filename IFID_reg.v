@@ -1,6 +1,3 @@
-// IFID pipeline register
-// Author: Jiashuo Zhang
-// Data: 6/1/2016
 module IFID_reg(clk, rst, in, out, IFID_write, IFflush);
 	parameter WIDTH = 64;
 	input clk, rst, IFID_write, IFflush;

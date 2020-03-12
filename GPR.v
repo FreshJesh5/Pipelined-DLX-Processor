@@ -1,6 +1,3 @@
-// Register File module to store data and result
-// Author: Jiashuo Zhang
-// Data: 5/1/2016
 module GPR(clk, rst, rs1, rs2, ws, we, 
 			  wData, rData1, rData2);
 	

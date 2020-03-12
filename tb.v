@@ -3,7 +3,7 @@ module tb();
    reg clock;
    reg reset;
 
-   CPU uut (.clk(clock), .rst(reset));
+   top uut (.clk(clock), .rst(reset));
 
    // generate clock
    always begin
