@@ -1,10 +1,9 @@
 module IFID_reg(clk, rst, in, out, IFID_write, IFflush);
-	parameter WIDTH = 64;
 	input clk, rst, IFID_write, IFflush;
-	input  [WIDTH - 1:0] in;
-	output [WIDTH - 1:0] out;
+	input  [63:0] in;
+	output [63:0] out;
 	
-	reg [WIDTH - 1:0] r;
+	reg [63:0] r;
 	
 	always @(posedge clk) begin
 		if (rst)

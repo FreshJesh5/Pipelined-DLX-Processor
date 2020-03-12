@@ -32,13 +32,13 @@ module CPU(clk, rst, sramA, sramData, sramWe, sramRe, instrA, instrD);
 	pc pCounter (.clk(clk), .rst(rst), .pcOut(pcOut), .pcIn(pcIn), .PC_write(PC_write));
 
 	// Pipeline registers
-	IFID_reg #(64)  IF_ID (.clk(clk), .rst(rst), .in({incrPC, instr_out}), .out(IFID_out), .IFID_write(IFID_write), .IFflush(IFflush));
+	IFID_reg IF_ID (.clk(clk), .rst(rst), .in({incrPC, instr_out}), .out(IFID_out), .IFID_write(IFID_write), .IFflush(IFflush));
 
-	register #(158) ID_EX (.clk(clk), .rst(rst), .in({J_JR, IFID_out[25:21], controlSignals, IFID_out[63:32], rData1, rData2, extended, IFID_out[20:16], IFID_out[15:11]}), .out(IDEX_out));
+	register158 ID_EX (.clk(clk), .rst(rst), .in({J_JR, IFID_out[25:21], controlSignals, IFID_out[63:32], rData1, rData2, extended, IFID_out[20:16], IFID_out[15:11]}), .out(IDEX_out));
 
-	register #(146) EX_MEM (.clk(clk), .rst(rst), .in({IDEX_out[41:10], J_JR_EX, IDEX_out[155:151], controlSignals_EX, branchPC, Z, resultALU, B_0, ws1}), .out(EXMEM_out));
+	register146 EX_MEM (.clk(clk), .rst(rst), .in({IDEX_out[41:10], J_JR_EX, IDEX_out[155:151], controlSignals_EX, branchPC, Z, resultALU, B_0, ws1}), .out(EXMEM_out));
 	
-	register #(71) MEM_WB (.clk(clk), .rst(rst), .in({EXMEM_out[106:105] , sramData, EXMEM_out[68:37], EXMEM_out[4:0]}), .out(MEMWB_out));
+	register71 MEM_WB (.clk(clk), .rst(rst), .in({EXMEM_out[106:105] , sramData, EXMEM_out[68:37], EXMEM_out[4:0]}), .out(MEMWB_out));
 	
 	// Control Unit
 	control ctrl (.Opcode(IFID_out[31:26]), .funct(IFID_out[5:0]), 
