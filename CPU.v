@@ -26,21 +26,21 @@ module CPU(clk, rst);
 
 	instructionMemory instMem (.address(pcOut), .instruction(instr_out));
 
-	pc pCounter (.clk(clk), .rst, .pcOut(pcOut), .pcIn(pcIn), .PC_write);
+	pc pCounter (.clk(clk), .rst(rst), .pcOut(pcOut), .pcIn(pcIn), .PC_write(PC_write));
 
 	// Pipeline registers
-	IFID_reg #(64)  IF_ID (.clk(clk), .rst, .in({incrPC, instr_out}), .out(IFID_out), .IFID_write, .IFflush);
+	IFID_reg #(64)  IF_ID (.clk(clk), .rst(rst), .in({incrPC, instr_out}), .out(IFID_out), .IFID_write(IFID_write), .IFflush(IFflush));
 
-	register #(158) ID_EX (.clk(clk), .rst, .in({J_JR, IFID_out[25:21], controlSignals, IFID_out[63:32], rData1, rData2, extended, IFID_out[20:16], IFID_out[15:11]}), .out(IDEX_out));
+	register #(158) ID_EX (.clk(clk), .rst(rst), .in({J_JR, IFID_out[25:21], controlSignals, IFID_out[63:32], rData1, rData2, extended, IFID_out[20:16], IFID_out[15:11]}), .out(IDEX_out));
 
-	register #(146) EX_MEM (.clk(clk), .rst, .in({IDEX_out[41:10], J_JR_EX, IDEX_out[155:151], controlSignals_EX, branchPC, Z, resultALU, B_0, ws1}), .out(EXMEM_out));
+	register #(146) EX_MEM (.clk(clk), .rst(rst), .in({IDEX_out[41:10], J_JR_EX, IDEX_out[155:151], controlSignals_EX, branchPC, Z, resultALU, B_0, ws1}), .out(EXMEM_out));
 	
-	register #(71) MEM_WB (.clk(clk), .rst, .in({EXMEM_out[106:105] , dataExtended, EXMEM_out[68:37], EXMEM_out[4:0]}), .out(MEMWB_out));
+	register #(71) MEM_WB (.clk(clk), .rst(rst), .in({EXMEM_out[106:105] , dataExtended, EXMEM_out[68:37], EXMEM_out[4:0]}), .out(MEMWB_out));
 	
 	// Control Unit
 	control ctrl (.Opcode(IFID_out[31:26]), .funct(IFID_out[5:0]), 
-				  .RegDst, .ALUOp, .ALUSrc, .Branch, .MemRead, .MemWrite, .MemtoReg, .RegWrite, .Jump, .JR,
-				  .branchCheck(PCSrc), .JumpCheck(EXMEM_out[113]), .JRCheck(EXMEM_out[112]), .IFflush, .IDflush, .EXflush);
+				  .RegDst(RegDst), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .Branch(Branch), .MemRead(MemRead), .MemWrite(MemWrite), .MemtoReg(MemtoReg), .RegWrite(RegWrite), .Jump(Jump), .JR(JR),
+				  .branchCheck(PCSrc), .JumpCheck(EXMEM_out[113]), .JRCheck(EXMEM_out[112]), .IFflush(IFflush), .IDflush(IDflush), .EXflush(EXflush));
 
 	// Adders increment PC and branch PC
 	CLU add1 (.A(pcOut), .B(32'd4), .sum(incrPC), .C(C1));
@@ -48,13 +48,13 @@ module CPU(clk, rst);
 	
 	// Sign Extenders
 	signExtender se (IFID_out[15:0], extended);
-	SignExtend_SRAM signExt (.sramAddress(EXMEM_out[47:37]), .sramData(sramData), .dataExtended);
+	SignExtend_SRAM signExt (.sramAddress(EXMEM_out[47:37]), .sramData(sramData), .dataExtended(dataExtended));
 
 	// Data memory
 	SRAM sram(.clk(clk), .address(EXMEM_out[47:37]), .data(sramData), .we(EXMEM_out[102]), .re(EXMEM_out[103]));
 
 	// Register file
-	GPR regfile (.clk(clk), .rst, .rs1(IFID_out[25:21]), .rs2(IFID_out[20:16]), .ws(MEMWB_out[4:0]), .we(MEMWB_out[70]), .wData, .rData1, .rData2);
+	GPR regfile (.clk(clk), .rst(rst), .rs1(IFID_out[25:21]), .rs2(IFID_out[20:16]), .ws(MEMWB_out[4:0]), .we(MEMWB_out[70]), .wData(wData), .rData1(rData1), .rData2(rData2));
 	
 
 	
@@ -67,9 +67,9 @@ module CPU(clk, rst);
 	forwarding f(.IDEX_rs(IDEX_out[155:151]), .IDEX_rt(IDEX_out[9:5]), .EXMEM_rd(EXMEM_out[4:0]), .MEMWB_rd(MEMWB_out[4:0]), 
 						.EXMEM_RegWrite(EXMEM_out[106]), .MEMWB_RegWrite(MEMWB_out[70]), 
 						.IDEX_MemWrite(IDEX_out[146]), .EXMEM_MemWrite(EXMEM_out[102]),
-						.forward_A, .forward_B);
+						.forward_A(forward_A), .forward_B(forward_B));
 
-	hazard_detect hdu (.clk(clk), .rst, .IFID_rs(IFID_out[25:21]), .IFID_rt(IFID_out[20:16]), .IDEX_rt(IDEX_out[9:5]), .IDEX_MemRead(IDEX_out[147]), .PC_write, .IFID_write, .mux_ctrl);
+	hazard_detect hdu (.clk(clk), .rst(rst), .IFID_rs(IFID_out[25:21]), .IFID_rt(IFID_out[20:16]), .IDEX_rt(IDEX_out[9:5]), .IDEX_MemRead(IDEX_out[147]), .PC_write(PC_write), .IFID_write(IFID_write), .mux_ctrl(mux_ctrl));
 
 	// Write back control signals
 	assign WB = {RegWrite, MemtoReg};

@@ -257,7 +257,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 					 RegDst = 1'bx; Branch = 1'bx; Jump = 1'bx; JR = 1'bx; MemRead = 1'bx; MemtoReg = 1'bx; MemWrite = 1'bx;
 					 ALUSrc = 1'bx;
 					 RegWrite = 1'bx;
-					 ALUOp = 2'hxx; end
+					 ALUOp = 6'hxx; end
 			endcase
 		end
 	end
