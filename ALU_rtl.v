@@ -14,9 +14,9 @@ module ALU_rtl(A, B, ctrl, shamt, out, Z, V, C, N);
 	
 	assign out0 = 32'bz;
 	// Add operation: Carry Lookahead Control Unit
-	CLU cluAdd(.A, .B, .sum(out1), .C(carryAdd));
+	CLU cluAdd(.A(A), .B(B), .sum(out1), .C(carryAdd));
 	// Sub operation
-	CLU cluSub(.A, .B(~B + 1'b1), .sum(out2), .C(carrySub));
+	CLU cluSub(.A(A), .B(~B + 1'b1), .sum(out2), .C(carrySub));
 	
 	assign out3 = A & B; // AND
 	assign out4 = A | B; // OR
@@ -24,7 +24,7 @@ module ALU_rtl(A, B, ctrl, shamt, out, Z, V, C, N);
 	assign out6 = A < B ? 32'b1 : 32'b0; // Set Less Than
 	
 	// Shift Left
-	shifter shft(.A, .ctrl(shamt), .out(out7));
+	shifter shft(.A(A), .ctrl(shamt), .out(out7));
 	// Pick Operation
 	genvar i;
 	generate

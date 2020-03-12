@@ -9,7 +9,7 @@ module instructionMemory(address, instruction);
 	
 	initial
 	begin
-		$readmemh("test_jump.dat", mem);
+		$readmemh("test_loop.dat", mem);
 	end
 	assign instruction = mem[{2'b0,address[31:2]}];
 endmodule

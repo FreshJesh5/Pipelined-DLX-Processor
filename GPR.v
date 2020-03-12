@@ -14,12 +14,12 @@ module GPR(clk, rst, rs1, rs2, ws, we,
 	wire   [31:0] reg_we;
 	wire   [4:0]  re1, re2;
 	
-	Register r (.clk, .rst, .in(32'b0), .out(register_out[0]), .enable(reg_we[0]));  // Register 0 always output 0
+	Register r (.clk(clk), .rst(rst), .in(32'b0), .out(register_out[0]), .enable(reg_we[0]));  // Register 0 always output 0
 	
 	genvar i;
 	generate
 		for (i=1; i<32; i=i+1) begin: generateRegisters     // Write
-			Register reg0 (.clk, .rst, .in(wData), .out(register_out[i]), .enable(reg_we[i]));  // Create 32x32 register by write operation
+			Register reg0 (.clk(clk), .rst(rst), .in(wData), .out(register_out[i]), .enable(reg_we[i]));  // Create 32x32 register by write operation
 		end
 	endgenerate
 	
