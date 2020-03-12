@@ -3,7 +3,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	input [5:0] Opcode, funct;
 	input branchCheck, JumpCheck, JRCheck;
 	output RegDst, Branch, Jump, JR, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
-	output [1:0] ALUOp;
+	output [5:0] ALUOp;
 	output reg IFflush, IDflush, EXflush;
 	
 	reg RegDst, Branch, Jump, JR, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
