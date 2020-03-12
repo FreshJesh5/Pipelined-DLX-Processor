@@ -1,6 +1,3 @@
-// Forwarding unit
-// Author: Jiashuo Zhang
-// Data: 6/1/2016
 module forwarding(IDEX_rs, IDEX_rt, EXMEM_rd, MEMWB_rd, EXMEM_RegWrite, MEMWB_RegWrite, IDEX_MemWrite, EXMEM_MemWrite, forward_A, forward_B);
 	input [4:0] IDEX_rs, IDEX_rt, EXMEM_rd, MEMWB_rd;
 	input			EXMEM_RegWrite, MEMWB_RegWrite, IDEX_MemWrite, EXMEM_MemWrite;

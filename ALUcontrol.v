@@ -1,6 +1,3 @@
-// ALU module in dataflow level model
-// Author: Jiashuo Zhang
-// Data: 6/1/2016
 module ALUcontrol (funct, enable, opSelect);
 	input [5:0] funct;
 	input [1:0] enable;
