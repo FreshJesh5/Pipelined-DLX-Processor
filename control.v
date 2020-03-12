@@ -7,7 +7,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	output reg IFflush, IDflush, EXflush;
 	
 	reg RegDst, Branch, Jump, JR, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
-	reg [1:0] ALUOp;
+	reg [5:0] ALUOp;
 	
 	parameter ADDI =  6'h08,R = 6'h00,Mult = 6'h01,J = 6'h02,JAL = 6'h03,BEQ = 6'h04,BNEZ = 6'h05,ADDUI=6'h09,SUBI=6'h0a,SUBUI=6'h0b;
 	parameter ANDI=6'h0c,ORI=6'h0d,XORI=6'h0e,LHI=6'h0f,JRf=6'h12,JALR=6'h13,SLLI=6'h14,SRLI=6'h16,SRAI=6'h17,SEQI=6'h18,SNEI=6'h19;
@@ -156,14 +156,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 end
 				// R type instruction including JumpRegister
 				R: 
-					if (funct == JRf) begin
-						RegDst = 0;
-						Branch = 0; Jump = 0; JR = 1;
-						MemRead = 0; MemtoReg = 1; MemWrite = 0; 
-						ALUSrc = 0; 
-						RegWrite = 0; 
-						ALUOp = funct;
-					end else begin
+					begin
 						RegDst = 1;
 						Branch = 0; Jump = 0; JR = 0;
 						MemRead = 0; MemtoReg = 1; MemWrite = 0;
@@ -210,8 +203,8 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 			       end
 			       */
 			   JRf: begin
-			       RegDst = 0; Branch = 0; Jump = 0; JR = 1; MemRead = 0; MemtoReg = 0; MemWrite = 0;
-                ALUSrc = 0; RegWrite = 1; ALUOp = 6'h11;
+			       RegDst = 0; Branch = 0; Jump = 0; JR = 1; MemRead = 0; MemtoReg = 1; MemWrite = 0;
+                ALUSrc = 0; RegWrite = 0; ALUOp = 6'h11;
             end
             /*
             JALR: begin
@@ -257,7 +250,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 					 ALUSrc = 0; RegWrite = 0; ALUOp = 6'h22;
 					 end
 				BNEZ: begin
-				    Branch = 1; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
+				    RegDst = 0; Branch = 1; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 0; RegWrite = 0; ALUOp = 6'h22;
             end
 				default: begin
