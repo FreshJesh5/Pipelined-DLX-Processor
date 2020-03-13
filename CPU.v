@@ -23,7 +23,7 @@ module CPU(clk, rst, sramA, sramData, sramWe, sramRe, instrA, instrD);
 	wire [1:0] J_JR, J_JR_EX, forward_A, forward_B;
 	//wire [31:0] sramData;
 	wire [2:0] opSelect;
-	wire C1,C2;
+	wire C1,C2,C3,C4,V1,V2;
 
 	//instructionMemory instMem (.address(pcOut), .instruction(instr_out));
    assign instrA = pcOut;
@@ -46,8 +46,10 @@ module CPU(clk, rst, sramA, sramData, sramWe, sramRe, instrA, instrD);
 				  .branchCheck(PCSrc), .JumpCheck(EXMEM_out[113]), .JRCheck(EXMEM_out[112]), .IFflush(IFflush), .IDflush(IDflush), .EXflush(EXflush));
 
 	// Adders increment PC and branch PC
-	CLU add1 (.A(pcOut), .B(32'd4), .sum(incrPC), .C(C1));
-	CLU add2 (.A(IDEX_out[137:106]), .B(IDEX_out[41:10]), .sum(branchPC), .C(C2));
+	//CLU add1 (.A(pcOut), .B(32'd4), .sum(incrPC), .C(C1));
+	//CLU add2 (.A(IDEX_out[137:106]), .B(IDEX_out[41:10]), .sum(branchPC), .C(C2));
+	cla32 add1 (.d1(pcOut) , .d2(32'd4), .cin(1'b0), .s(incrPC), .cout(C3), .ovf(V1));
+	cla32 add2 (.d1(IDEX_out[137:106]), .d2(IDEX_out[41:10]), .cin(1'b0), .s(branchPC), .cout(C4), .ovf(V2));
 	
 	// Sign Extenders
 	signExtender se (IFID_out[15:0], extended);

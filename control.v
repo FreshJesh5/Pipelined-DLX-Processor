@@ -211,7 +211,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 RegDst = 0; Branch = 0; Jump = 0; JR = 1; MemRead = 0; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 0; RegWrite = 1; ALUOp = 6'h11;
             end
-            
+            */
             LHI: begin
                 RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 1; RegWrite = 1; ALUOp = 6'h20;
@@ -242,7 +242,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 1;
                 ALUSrc = 1; RegWrite = 0; ALUOp = 6'h20;
             end
-*/
+
 				// Branch equal
 				
 				BEQ:begin
