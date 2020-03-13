@@ -1,10 +1,10 @@
 module GPR(clk, rst, rs1, rs2, ws, we, 
 			  wData, rData1, rData2);
 	
-	input  clk, we, rst;						// High true enable
-	input  [4:0] rs1, rs2, ws;			// Read select 1, read select 2, and write select
-	input  [31:0] wData;					// Write data in
-	output [31:0] rData1, rData2;  // Read Data
+	input  clk, we, rst;
+	input  [4:0] rs1, rs2, ws;
+	input  [31:0] wData;
+	output [31:0] rData1, rData2;
 	
 	wire   [31:0] register_out [31:0];
 	wire   [31:0] decode_out;
