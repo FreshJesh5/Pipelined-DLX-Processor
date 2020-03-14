@@ -9,7 +9,7 @@ module CPU(clk, rst, sramA, sramData, sramWe, sramRe, instrA, instrD);
 	wire [31:0] instr_out, pcOut, incrPC, branchPC, extended, resultALU,wData, rData1, rData2, B, dataExtended;
 	reg  [31:0] A, B_0, pcIn;
 	wire RegDst, Branch, Jump, JR, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, PC_write, IFID_write, mux_ctrl, PCSrc, Z, IFflush, IDflush, EXflush, V, C, N;
-	wire [4:0] ws1, ws2, shamt;
+	wire [4:0] ws1, ws2;
 	wire [5:0] ALUOp;
 	wire [63:0] IFID_out; 
 	wire [157:0] IDEX_out;
@@ -46,8 +46,6 @@ module CPU(clk, rst, sramA, sramData, sramWe, sramRe, instrA, instrD);
 				  .branchCheck(PCSrc), .JumpCheck(EXMEM_out[113]), .JRCheck(EXMEM_out[112]), .IFflush(IFflush), .IDflush(IDflush), .EXflush(EXflush));
 
 	// Adders increment PC and branch PC
-	//CLU add1 (.A(pcOut), .B(32'd4), .sum(incrPC), .C(C1));
-	//CLU add2 (.A(IDEX_out[137:106]), .B(IDEX_out[41:10]), .sum(branchPC), .C(C2));
 	cla32 add1 (.d1(pcOut) , .d2(32'd4), .cin(1'b0), .s(incrPC), .cout(C3), .ovf(V1));
 	cla32 add2 (.d1(IDEX_out[137:106]), .d2(IDEX_out[41:10]), .cin(1'b0), .s(branchPC), .cout(C4), .ovf(V2));
 	
@@ -67,8 +65,6 @@ module CPU(clk, rst, sramA, sramData, sramWe, sramRe, instrA, instrD);
 
 	
 	// ALU
-	//ALUcontrol aluCtrl (.funct(IDEX_out[15:10]), .enable(IDEX_out[144:139]), .opSelect(opSelect));
-	//ALU_rtl alu (.A(A), .B(B), .ctrl(opSelect), .shamt(IDEX_out[20:16]), .out(resultALU), .Z, .V, .C, .N);
 	alu mainalu (.d1(A), .d2(B), .func(IDEX_out[144:139]), .s(resultALU), .zero_detect(Z), .ovf(V), .cout(C), .N(N));
 	
 	// Forwarding unit

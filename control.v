@@ -6,7 +6,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	output [5:0] ALUOp;
 	output reg IFflush, IDflush, EXflush;
 	
-	reg RegDst, Branch, Jump, JR, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
+	reg RegDst, Branch, Branch_ne, Jump, JR, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
 	reg [5:0] ALUOp;
 	
 	parameter ADDI =  6'h08,R = 6'h00,Mult = 6'h01,J = 6'h02,JAL = 6'h03,BEQ = 6'h04,BNEZ = 6'h05,ADDUI=6'h09,SUBI=6'h0a,SUBUI=6'h0b;
@@ -27,7 +27,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 			case (Opcode)
 				// Immediate
 				ADDI: begin
-					 RegDst = 0;
+					 RegDst = 0; Branch_ne = 0;
 					 Branch = 0; Jump = 0; JR = 0;
 					 MemRead = 0; MemtoReg = 1; MemWrite = 0;
 					 ALUSrc = 1;
@@ -35,7 +35,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 					 ALUOp = 6'h20;
 					 end
 				ADDUI: begin
-	             RegDst = 0;
+	             RegDst = 0; Branch_ne = 0;
 	             Branch = 0; Jump = 0; JR = 0;
 	             MemRead = 0; MemtoReg = 1; MemWrite = 0;
 	             ALUSrc = 1;
@@ -43,7 +43,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	             ALUOp = 6'h21;
 	             end
 	         SUBI: begin
-	             RegDst = 0;
+	             RegDst = 0; Branch_ne = 0;
 	             Branch = 0; Jump = 0; JR = 0;
 	             MemRead = 0; MemtoReg = 1; MemWrite = 0;
 	             ALUSrc = 1;
@@ -51,7 +51,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	             ALUOp = 6'h22;
 	             end
             SUBUI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -59,7 +59,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h23;
                 end
             ANDI: begin
-	             RegDst = 0;
+	             RegDst = 0; Branch_ne = 0;
 	             Branch = 0; Jump = 0; JR = 0;
 	             MemRead = 0; MemtoReg = 1; MemWrite = 0;
 	             ALUSrc = 1;
@@ -67,7 +67,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	             ALUOp = 6'h24;
 	             end
             ORI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -75,7 +75,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h25;
                 end
             XORI: begin
-	             RegDst = 0;
+	             RegDst = 0; Branch_ne = 0;
 	             Branch = 0; Jump = 0; JR = 0;
 	             MemRead = 0; MemtoReg = 1; MemWrite = 0;
 	             ALUSrc = 1;
@@ -83,7 +83,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	             ALUOp = 6'h26;
 	             end
             SLLI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -91,7 +91,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h04;
                 end
             SRLI: begin
-	             RegDst = 0;
+	             RegDst = 0; Branch_ne = 0;
 	             Branch = 0; Jump = 0; JR = 0;
 	             MemRead = 0; MemtoReg = 1; MemWrite = 0;
 	             ALUSrc = 1;
@@ -99,7 +99,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	             ALUOp = 6'h06;
 	             end
             SRAI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -107,7 +107,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h07;
                 end
             SEQI: begin
-	             RegDst = 0;
+	             RegDst = 0; Branch_ne = 0;
 	             Branch = 0; Jump = 0; JR = 0;
 	             MemRead = 0; MemtoReg = 1; MemWrite = 0;
 	             ALUSrc = 1;
@@ -115,7 +115,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	             ALUOp = 6'h28;
 	             end
             SNEI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -123,7 +123,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h29;
                 end
             SLTI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -131,7 +131,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h2a;
                 end
             SGTI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -139,7 +139,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h2b;
                 end
             SLEI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -147,7 +147,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
                 ALUOp = 6'h2c;
                 end
             SGEI: begin
-                RegDst = 0;
+                RegDst = 0; Branch_ne = 0;
                 Branch = 0; Jump = 0; JR = 0;
                 MemRead = 0; MemtoReg = 1; MemWrite = 0;
                 ALUSrc = 1;
@@ -157,7 +157,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 				// R type instruction including JumpRegister
 				R: 
 					begin
-						RegDst = 1;
+						RegDst = 1; Branch_ne = 0;
 						Branch = 0; Jump = 0; JR = 0;
 						MemRead = 0; MemtoReg = 1; MemWrite = 0;
 						ALUSrc = 0;
@@ -165,7 +165,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 						ALUOp = funct;
 					end
 				Mult: begin
-		            RegDst = 1;
+		            RegDst = 1; Branch_ne = 0;
 		            Branch = 0; Jump = 0; JR = 0;
 		            MemRead = 0; MemtoReg = 1; MemWrite = 0;
 		            ALUSrc = 0;
@@ -175,7 +175,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 	             
 				// Load word from SRAM to register
 				LW: begin
-					 RegDst = 0;
+					 RegDst = 0; Branch_ne = 0;
 					 Branch = 0; Jump = 0; JR = 0;
 					 MemRead = 1; MemtoReg = 0; MemWrite = 0;
 					 ALUSrc = 1;
@@ -184,7 +184,7 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 					 end
 				// Store word from register back to memory
 				SW: begin
-					 RegDst = 0;
+					 RegDst = 0; Branch_ne = 0;
 					 Branch = 0; Jump = 0; JR = 0;
 					 MemRead = 0; MemtoReg = 0; MemWrite = 1;
 					 ALUSrc = 1;
@@ -193,12 +193,12 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
 					 end
 				// Jump
 				J : begin
-					 RegDst = 0; Branch = 0; Jump = 1; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0; 
+					 RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 1; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0; 
 					 ALUSrc = 0; RegWrite = 0; ALUOp = 6'h11;
 					 end
 					 /*
 			   JAL: begin
-			       RegDst = 0; Branch = 0; Jump = 1; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
+			       RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 1; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
 			       ALUSrc = 0; RegWrite = 1; ALUOp = 6'h11;
 			       end
 			       */
@@ -208,53 +208,53 @@ module control(Opcode, funct, RegDst, Branch, Jump, JR,MemRead, MemtoReg, ALUOp,
             end
             /*
             JALR: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 1; MemRead = 0; MemtoReg = 0; MemWrite = 0;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 1; MemRead = 0; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 0; RegWrite = 1; ALUOp = 6'h11;
             end
             */
             LHI: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 1; RegWrite = 1; ALUOp = 6'h20;
             end
             
             LB: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 1; RegWrite = 1; ALUOp = 6'h20;
             end
             
             LH: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 1; RegWrite = 1; ALUOp = 6'h20;
             end
             LBU: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 1; RegWrite = 1; ALUOp = 6'h20;
             end
             LHU: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 1; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 1; RegWrite = 1; ALUOp = 6'h20;
             end
             SB: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 1;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 1;
                 ALUSrc = 1; RegWrite = 0; ALUOp = 6'h20;
             end
             SH: begin
-                RegDst = 0; Branch = 0; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 1;
+                RegDst = 0; Branch = 0; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 1;
                 ALUSrc = 1; RegWrite = 0; ALUOp = 6'h20;
             end
 
 				// Branch equal
 				
 				BEQ:begin
-					 RegDst = 0; Branch = 1; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
+					 RegDst = 0; Branch = 1; Branch_ne = 0; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
 					 ALUSrc = 0; RegWrite = 0; ALUOp = 6'h22;
 					 end
 				BNEZ: begin
-				    RegDst = 0; Branch = 1; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
+				    RegDst = 0; Branch = 0; Branch_ne = 1; Jump = 0; JR = 0; MemRead = 0; MemtoReg = 0; MemWrite = 0;
                 ALUSrc = 0; RegWrite = 0; ALUOp = 6'h22;
             end
 				default: begin
-					 RegDst = 1'bx; Branch = 1'bx; Jump = 1'bx; JR = 1'bx; MemRead = 1'bx; MemtoReg = 1'bx; MemWrite = 1'bx;
+					 RegDst = 1'bx; Branch = 1'bx; Branch_ne = 1'bx; Jump = 1'bx; JR = 1'bx; MemRead = 1'bx; MemtoReg = 1'bx; MemWrite = 1'bx;
 					 ALUSrc = 1'bx;
 					 RegWrite = 1'bx;
 					 ALUOp = 6'hxx; end
